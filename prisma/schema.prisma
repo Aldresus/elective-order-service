@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Order {
+  id                                String   @id @default(auto()) @map("_id") @db.ObjectId
+  order_date                        DateTime @db.Date
+  status                            String
+  price                             String
+  postal_code                       String
+  address                           String
+  city                              String
+  notes                             String
+  restaurant_to_delivery_datetime   DateTime @db.Date
+  received_datetime                 DateTime @db.Date
+  restaurant_accepted_datetime      DateTime @db.Date
+  delivery_accepted_datetime        DateTime @db.Date
+}
