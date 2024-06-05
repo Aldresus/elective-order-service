@@ -1,0 +1,18 @@
+meta {
+  name: Get orders (with filters)
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:3000/order?id_order=666083f2f27ea5dd0581d9d6&id_restaurateur=666082541f70b2600442c0b5&id_user=666082541f44b2600a92c0b5&status=string
+  body: none
+  auth: none
+}
+
+query {
+  id_order: 666083f2f27ea5dd0581d9d6
+  id_restaurateur: 666082541f70b2600442c0b5
+  id_user: 666082541f44b2600a92c0b5
+  status: string
+}

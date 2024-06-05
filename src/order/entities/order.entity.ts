@@ -3,7 +3,7 @@ import type { Order } from '@prisma/client';
 
 export class OrderEntity implements Order {
     @ApiProperty()
-    id: string;
+    id_order: string;
 
     @ApiProperty()
     order_date: Date;
@@ -38,11 +38,16 @@ export class OrderEntity implements Order {
     @ApiProperty()
     delivery_accepted_datetime: Date;
 
+    @ApiProperty()
+    id_restaurant: string;
+
+    @ApiProperty()
+    id_user: string;
+
     createdAt: Date;
     updatedAt: Date;
 
     constructor(partial: Partial<OrderEntity>) {
         Object.assign(this, partial);
   }
-
 }

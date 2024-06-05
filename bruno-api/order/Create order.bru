@@ -1,0 +1,29 @@
+meta {
+  name: Create order
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/order
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "order_date": "2024-06-05T15:31:02.405Z",
+    "status": "finished",
+    "price": "10.50",
+    "postal_code": "67000",
+    "address": "2 Allée des Foulons",
+    "city": "Lingolsheim",
+    "notes": "2",
+    "restaurant_to_delivery_datetime": "2024-06-05T15:31:02.405Z",
+    "received_datetime": "2024-06-05T15:31:02.405Z",
+    "restaurant_accepted_datetime": "2024-06-05T15:31:02.405Z",
+    "delivery_accepted_datetime": "2024-06-05T15:31:02.405Z",
+    "id_restaurant": "666083e5f27ea5dd0581d9d5",
+    "id_user": "666083e5f27ea5dd0581d9d5"
+  }
+}

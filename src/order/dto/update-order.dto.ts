@@ -35,4 +35,10 @@ export class UpdateOrderDto extends PartialType(CreateOrderDto) {
 
     @ApiProperty()
     delivery_accepted_datetime: Date;
+
+    @ApiProperty()
+    id_restaurant: string;
+
+    @ApiProperty()
+    id_user: string;
 }
