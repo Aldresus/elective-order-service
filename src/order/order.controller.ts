@@ -1,16 +1,32 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { OrderService } from './order.service';
-import { ApiBody, ApiTags, ApiCreatedResponse, ApiQuery } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiTags,
+  ApiCreatedResponse,
+  ApiQuery,
+  ApiOperation,
+} from '@nestjs/swagger';
 import { OrderEntity } from './entities/order.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 
-@Controller('order')
+@Controller('api/order')
 @ApiTags('order')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @Post()
+  @ApiOperation({ summary: 'Create an order' })
   @ApiCreatedResponse({ type: OrderEntity })
   @ApiBody({ type: CreateOrderDto })
   create(@Body() createOrderDto: CreateOrderDto) {
@@ -18,6 +34,7 @@ export class OrderController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Get orders with optional filters' })
   @ApiCreatedResponse({ type: OrderEntity, isArray: true })
   @ApiQuery({ name: 'id_order', required: false, type: String })
   @ApiQuery({ name: 'id_restaurateur', required: false, type: String })
@@ -35,11 +52,12 @@ export class OrderController {
       id_order: idOrder,
       id_restaurateur: idRestaurateur,
       id_user: idUser,
-      status: status
+      status: status,
     });
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Update order with ID' })
   @ApiCreatedResponse({ type: OrderEntity })
   @ApiBody({ type: UpdateOrderDto })
   update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
@@ -47,6 +65,7 @@ export class OrderController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Delete order with ID' })
   @ApiCreatedResponse({ type: UpdateOrderDto })
   remove(@Param('id') id: string) {
     return this.orderService.remove(id);
