@@ -60,14 +60,17 @@ export class OrderController {
   @ApiOperation({ summary: 'Update order with ID' })
   @ApiCreatedResponse({ type: OrderEntity })
   @ApiBody({ type: UpdateOrderDto })
-  update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
-    return this.orderService.update(id, updateOrderDto);
+  update(
+    @Param('id') id_order: string,
+    @Body() updateOrderDto: UpdateOrderDto,
+  ) {
+    return this.orderService.update(id_order, updateOrderDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete order with ID' })
   @ApiCreatedResponse({ type: UpdateOrderDto })
-  remove(@Param('id') id: string) {
-    return this.orderService.remove(id);
+  remove(@Param('id') id_order: string) {
+    return this.orderService.remove(id_order);
   }
 }
