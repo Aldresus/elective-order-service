@@ -32,7 +32,6 @@ pipeline {
             steps {
                 script {
                     echo "building image with mongo ${MONGODB_URI}"
-                    // Start the application within the running container
                     sh "touch .env && echo DATABASE_URL=${MONGODB_URI} >> .env"
                     sh "docker build -t order-service ."
                 }
@@ -40,14 +39,13 @@ pipeline {
             post {
                 failure {
                     discordSend description: "Failed to build image.", link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: "${DISCORD_WEBHOOK_URL}"
-
                 }
             }
         }
         stage('deploy') {
             steps {
                 script {
-                    sh "docker run -d --name order-service -p 9010:3000 --restart unless-stopped order-service"
+                    sh "docker run -d --name order-service -p 9011:3000 --restart unless-stopped order-service"
                 }
             }
             post {
