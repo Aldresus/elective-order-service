@@ -8,18 +8,41 @@ datasource db {
 }
 
 model Order {
-  id_order                          String   @id @default(auto()) @map("_id") @db.ObjectId
-  order_date                        DateTime @db.Date
-  status                            String
-  price                             String
-  postal_code                       String
-  address                           String
-  city                              String
-  notes                             String
-  restaurant_to_delivery_datetime   DateTime @db.Date
-  received_datetime                 DateTime @db.Date
-  restaurant_accepted_datetime      DateTime @db.Date
-  delivery_accepted_datetime        DateTime @db.Date
-  id_user                           String   @db.ObjectId
-  id_restaurant                     String   @db.ObjectId
+  id_order                        String   @id @default(auto()) @map("_id") @db.ObjectId
+  order_date                      DateTime @db.Date
+  status                          String
+  price                           Float
+  postal_code                     String
+  address                         String
+  city                            String
+  notes                           String
+  restaurant_to_delivery_datetime DateTime @db.Date
+  received_datetime               DateTime @db.Date
+  restaurant_accepted_datetime    DateTime @db.Date
+  delivery_accepted_datetime      DateTime @db.Date
+  id_user                         String   @db.ObjectId
+  id_restaurant                   String   @db.ObjectId
+
+  menus    Menu[]
+  products Product[]
 }
+
+type Menu {
+  id_menu     String    @map("_id") @db.ObjectId
+  name        String
+  description String
+  price       Float
+  products    Product[]
+}
+
+type Product {
+  id_product  String @map("_id") @db.ObjectId
+  name        String
+  description String
+  price       Float
+  quantity    Int
+}
+
+//no models because there is no use for the product/menus only by themselves
+// they only exist in the order
+// if we wanted to find the full product/menus list we would need to query Restaurant Microservice with the ids

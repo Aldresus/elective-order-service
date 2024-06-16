@@ -1,5 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import type { Order } from '@prisma/client';
+import { OrderMenuEntity } from './menu.entity';
+import { OrderProductEntity } from './product.entity';
 
 export class OrderEntity implements Order {
   @ApiProperty()
@@ -12,7 +14,7 @@ export class OrderEntity implements Order {
   status: string;
 
   @ApiProperty()
-  price: string;
+  price: number;
 
   @ApiProperty()
   postal_code: string;
@@ -43,6 +45,12 @@ export class OrderEntity implements Order {
 
   @ApiProperty({ default: '111111111111111111111111' })
   id_user: string;
+
+  @ApiProperty({ type: [OrderMenuEntity] })
+  menus: Array<OrderMenuEntity>;
+
+  @ApiProperty({ type: [OrderProductEntity] })
+  products: Array<OrderProductEntity>;
 
   createdAt: Date;
   updatedAt: Date;

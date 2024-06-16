@@ -15,7 +15,20 @@ export class OrderService {
     });
   }
 
-  findMany(params: { id_order: string; id_restaurateur: string; id_user: string; status: string }) {
+  findById(id: string) {
+    return this.prisma.order.findUnique({
+      where: {
+        id_order: id,
+      },
+    });
+  }
+
+  findMany(params: {
+    id_order: string;
+    id_restaurateur: string;
+    id_user: string;
+    status: string;
+  }) {
     console.log(params);
 
     return this.prisma.order.findMany({
@@ -25,14 +38,17 @@ export class OrderService {
             id_order: params.id_order === '' ? undefined : params.id_order,
           },
           {
-            id_restaurant: params.id_restaurateur === '' ? undefined : params.id_restaurateur
+            id_restaurant:
+              params.id_restaurateur === ''
+                ? undefined
+                : params.id_restaurateur,
           },
           {
-            id_user: params.id_user === '' ? undefined : params.id_user
+            id_user: params.id_user === '' ? undefined : params.id_user,
           },
           {
-            status: params.status === '' ? undefined : params.status
-          }
+            status: params.status === '' ? undefined : params.status,
+          },
         ],
       },
     });

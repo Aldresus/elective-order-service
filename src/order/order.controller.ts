@@ -33,6 +33,14 @@ export class OrderController {
     return this.orderService.create(createOrderDto);
   }
 
+  @Get(':id')
+  @ApiOperation({ summary: 'Get order with ID' })
+  @ApiCreatedResponse({ type: OrderEntity })
+  @ApiQuery({ name: 'id_order', required: true, type: String })
+  findById(@Param('id') id_order: string) {
+    return this.orderService.findById(id_order);
+  }
+
   @Get()
   @ApiOperation({ summary: 'Get orders with optional filters' })
   @ApiCreatedResponse({ type: OrderEntity, isArray: true })
