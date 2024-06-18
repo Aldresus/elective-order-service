@@ -11,7 +11,7 @@ export class OrderService {
     console.log(createOrderDto);
 
     return this.prisma.order.create({
-      data: createOrderDto,
+      data: { ...createOrderDto, received_datetime: new Date() },
     });
   }
 

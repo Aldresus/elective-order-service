@@ -16,10 +16,10 @@ model Order {
   address                         String
   city                            String
   notes                           String
-  restaurant_to_delivery_datetime DateTime @db.Date
+  restaurant_to_delivery_datetime DateTime? @db.Date
   received_datetime               DateTime @db.Date
-  restaurant_accepted_datetime    DateTime @db.Date
-  delivery_accepted_datetime      DateTime @db.Date
+  restaurant_accepted_datetime    DateTime? @db.Date
+  delivery_accepted_datetime      DateTime? @db.Date
   id_user                         String   @db.ObjectId
   id_restaurant                   String   @db.ObjectId
 
