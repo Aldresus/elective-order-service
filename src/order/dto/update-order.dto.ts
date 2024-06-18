@@ -3,13 +3,14 @@ import { CreateOrderDto } from './create-order.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import { UpdateOrderMenuDto } from './update-menu.dto';
 import { UpdateOrderProductDto } from './update-product.dto';
+import { OrderStatusEnum } from '../enums/orderStatus.enum';
 
 export class UpdateOrderDto extends PartialType(CreateOrderDto) {
   @ApiProperty()
   order_date: Date;
 
   @ApiProperty()
-  status: string;
+  status: OrderStatusEnum;
 
   @ApiProperty()
   price: number;

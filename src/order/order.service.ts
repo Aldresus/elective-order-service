@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { PrismaService } from 'src/prisma.service';
+import { OrderStatusEnum } from './enums/orderStatus.enum';
 
 @Injectable()
 export class OrderService {
@@ -11,7 +12,11 @@ export class OrderService {
     console.log(createOrderDto);
 
     return this.prisma.order.create({
-      data: { ...createOrderDto, received_datetime: new Date() },
+      data: {
+        ...createOrderDto,
+        received_datetime: new Date(),
+        status: OrderStatusEnum.CREATED,
+      },
     });
   }
 
